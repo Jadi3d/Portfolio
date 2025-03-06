@@ -6,182 +6,58 @@
     <title>Jade Magbanua - Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Original Portfolio Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ... (keep all existing styles the same) ... */
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        section {
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: white;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .skill-item {
-            background: white;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        /* PDF Showcase Additions */
-        .document-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .doc-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .doc-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .doc-preview {
-            position: relative;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .doc-preview img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
+        /* Updated PDF Button Styles */
         .doc-links {
             display: flex;
             justify-content: space-between;
             gap: 0.5rem;
+            margin-top: 1.5rem;
         }
 
         .preview-link, .download-link {
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             flex: 1;
             text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .preview-link {
-            background: #3498db;
+            background: #2c3e50;
             color: white;
+            border: 2px solid #2c3e50;
+        }
+
+        .preview-link:hover {
+            background: #34495e;
+            transform: translateY(-2px);
         }
 
         .download-link {
-            background: #2ecc71;
-            color: white;
+            background: transparent;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            section {
-                padding: 2rem 1rem;
-            }
-            
-            .skills-container {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            
-            .document-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .doc-links {
-                flex-direction: column;
-            }
+        .download-link:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
         }
+
+        /* ... (keep existing responsive styles) ... */
     </style>
 </head>
 <body>
-    <header>
-        <h1>Jade Magbanua<h1>
-        <p>Data Analyst</p>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#reports">Reports</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting. Proficient in Python, SQL, and data visualization tools like Power BI and Tableau. 
-            Eager to leverage my analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.</p>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-card">
-            <h3>Sales Analysis Dashboard</h3>
-            <p>Interactive Power BI dashboard showing sales trends and regional performance.</p>
-            <p>Technologies: Power BI, DAX, SQL</p>
-            <a href="#">View Demo</a>
-        </div>
-    </section>
+    <!-- ... (keep header and other sections the same) ... -->
 
     <section id="reports">
         <h2>Analytical Reports</h2>
@@ -189,15 +65,15 @@
             <!-- Power BI Report -->
             <div class="doc-card">
                 <div class="doc-preview">
-                    <a href="New Zealand Data sheet.pdf" target="_blank" class="preview-link">
+                    <img src="images/pdf-placeholder.jpg" alt="Power BI Report Preview">
                     <h3>Power BI Dashboard Analysis</h3>
                 </div>
                 <div class="doc-links">
                     <a href="New Zealand Data sheet.pdf" target="_blank" class="preview-link">
-                        <i class="fas fa-eye"></i> Preview
+                        <i class="fas fa-external-link-alt"></i> Live Preview
                     </a>
                     <a href="New Zealand Data sheet.pdf" download class="download-link">
-                        <i class="fas fa-download"></i> PDF
+                        <i class="fas fa-file-download"></i> Download
                     </a>
                 </div>
             </div>
@@ -210,35 +86,16 @@
                 </div>
                 <div class="doc-links">
                     <a href="documents/sql-analysis.pdf" target="_blank" class="preview-link">
-                        <i class="fas fa-eye"></i> Preview
+                        <i class="fas fa-external-link-alt"></i> Live Preview
                     </a>
                     <a href="documents/sql-analysis.pdf" download class="download-link">
-                        <i class="fas fa-download"></i> PDF
+                        <i class="fas fa-file-download"></i> Download
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-item">Power BI</div>
-            <div class="skill-item">SQL</div>
-            <div class="skill-item">Python</div>
-            <div class="skill-item">Excel</div>
-            <div class="skill-item">Tableau</div>
-            <div class="skill-item">R</div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-links">
-            <a href="mailto:jademagbanua24@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/jade-m-4849a0180/"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Jadi3d"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-    </section>
+    <!-- ... (keep rest of the code the same) ... -->
 </body>
 </html>
