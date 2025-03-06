@@ -6,10 +6,78 @@
     <title>Jade Magbanua - Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ... (keep all existing styles the same) ... */
+        /* Original Portfolio Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Updated PDF Button Styles */
-        .doc-links {
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* PDF Showcase Additions */
+       .doc-links {
             display: flex;
             justify-content: space-between;
             gap: 0.5rem;
@@ -53,11 +121,54 @@
             transform: translateY(-2px);
         }
 
-        /* ... (keep existing responsive styles) ... */
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .document-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .doc-links {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- ... (keep header and other sections the same) ... -->
+    <header>
+        <h1>Jade Magbanua<h1>
+        <p>Data Analyst</p>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#reports">Reports</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting. Proficient in Python, SQL, and data visualization tools like Power BI and Tableau. 
+            Eager to leverage my analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-card">
+            <h3>Sales Analysis Dashboard</h3>
+            <p>Interactive Power BI dashboard showing sales trends and regional performance.</p>
+            <p>Technologies: Power BI, DAX, SQL</p>
+            <a href="#">View Demo</a>
+        </div>
+    </section>
 
     <section id="reports">
         <h2>Analytical Reports</h2>
@@ -96,6 +207,25 @@
         </div>
     </section>
 
-    <!-- ... (keep rest of the code the same) ... -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-item">Power BI</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">Excel</div>
+            <div class="skill-item">Tableau</div>
+            <div class="skill-item">R</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-links">
+            <a href="mailto:jademagbanua24@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.linkedin.com/in/jade-m-4849a0180/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/Jadi3d"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </section>
 </body>
 </html>
