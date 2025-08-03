@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Magbanua - Data Analyst Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Jade Magbanua – Data Analyst Portfolio</title>
+
+    <!-- Updated Font Awesome CDN for more icons and better compatibility -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        /* Original Portfolio Styles */
+        /* -------------------- Base & General Styles -------------------- */
         * {
             margin: 0;
             padding: 0;
@@ -20,76 +24,240 @@
             background-color: #f9f9f9;
         }
 
+        /* -------------------- Header Section -------------------- */
         header {
             background-color: #2c3e50;
             color: white;
-            padding: 2rem;
+            padding: 2.5rem 1rem 3rem; /* Increased padding slightly for more space */
             text-align: center;
+            position: relative; /* Needed for potential future additions like waves or shapes */
         }
 
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.15rem;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 1rem;
+            margin-top: 1.8rem; /* Adjusted margin */
+            flex-wrap: wrap; /* Allow navigation items to wrap on smaller screens */
         }
 
         nav a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            padding-bottom: 5px; /* Space for the underline */
         }
 
+        nav a::after { /* Small hover underline effect */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0; /* Align with the bottom of the link text */
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* -------------------- New: Action Buttons -------------------- */
+        .action-buttons {
+            margin-top: 2rem; /* Space between description and buttons */
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem; /* Space between buttons */
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        }
+
+        .btn {
+            display: inline-flex; /* Allows icon and text to sit nicely together */
+            align-items: center; /* Vertically align icon and text */
+            gap: 0.6rem; /* Space between icon and text */
+            padding: 0.9rem 1.6rem;
+            border-radius: 40px; /* More pill-shaped buttons */
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s ease; /* Smooth transition for hover effects */
+            white-space: nowrap; /* Prevent text from wrapping inside the button */
+        }
+
+        .btn i {
+            font-size: 1.1em; /* Slightly larger icon */
+        }
+
+        /* Primary Button Style (e.g., for Resume) */
+        .btn-primary {
+            background-color: #e74c3c; /* A vibrant red for primary action */
+            color: white;
+            border: 2px solid #e74c3c;
+        }
+
+        .btn-primary:hover {
+            background-color: #cf3f30; /* Darker red on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow on hover */
+        }
+
+        /* Outline Button Style (e.g., for GitHub) */
+        .btn-outline {
+            background-color: transparent;
+            color: #e74c3c; /* Match primary button color for consistency */
+            border: 2px solid #e74c3c;
+        }
+
+        .btn-outline:hover {
+            background-color: #e74c3c; /* Fill with color on hover */
+            color: white;
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow on hover */
+        }
+
+
+        /* -------------------- Section General Styles -------------------- */
         section {
-            padding: 3rem 2rem;
+            padding: 3rem 1.5rem; /* Adjusted padding for sections */
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        .project-card {
-            background: white;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            text-align: center; /* Center section headings */
         }
 
+        /* -------------------- Project & Skill Cards -------------------- */
+        .project-card,
+        .skill-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Slightly more prominent shadow */
+            transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+        }
+        
+        .project-card:hover,
+        .skill-item:hover {
+            transform: translateY(-3px); /* Lift cards on hover */
+        }
+
+        .project-card {
+            padding: 1.5rem;
+            margin: 1.5rem 0; /* Adjusted margin */
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            color: #34495e;
+        }
+
+        .project-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid #2c3e50; /* Underline effect for links */
+            padding-bottom: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .project-card a:hover {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        /* -------------------- Skills Section -------------------- */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly adjusted min width */
             gap: 1rem;
             margin-top: 1rem;
         }
 
         .skill-item {
-            background: white;
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-weight: bold;
+            color: #2c3e50;
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
+        /* -------------------- Reports Section (PDF Showcase) -------------------- */
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* For two columns on larger screens */
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* PDF Showcase Additions */
-       .doc-links {
+        .doc-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden; /* Ensures image corners are rounded with card */
             display: flex;
-            justify-content: space-between;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
+            flex-direction: column; /* Stack preview and links */
+            transition: transform 0.2s ease-in-out;
+        }
+        .doc-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .doc-preview {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .doc-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px; /* Slightly rounded image corners */
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .doc-preview h3 {
+            color: #34495e;
+            font-size: 1.2rem;
+        }
+
+        .doc-links {
+            display: flex;
+            justify-content: center; /* Center the links within the card */
+            gap: 1rem; /* More space between links */
+            padding: 1rem 1.5rem 1.5rem; /* Padding around the links */
+            border-top: 1px solid #eee; /* Separator line */
+            flex-wrap: wrap; /* Allow links to wrap if needed */
         }
 
         .preview-link, .download-link {
-            padding: 0.8rem 1.2rem;
+            padding: 0.8rem 1rem; /* Slightly reduced horizontal padding */
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.95rem;
-            flex: 1;
+            font-size: 0.9rem; /* Slightly smaller font for these links */
+            flex: 1; /* Allow links to take equal space */
+            min-width: 120px; /* Ensure a minimum width */
             text-align: center;
             transition: all 0.3s ease;
             display: flex;
@@ -120,31 +288,125 @@
             color: white;
             transform: translateY(-2px);
         }
+        
+        /* -------------------- Contact Section -------------------- */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem; /* Adjusted gap */
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
 
-        /* Responsive Design */
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-links a i {
+            font-size: 1.4em; /* Larger icons for contact */
+            color: #e74c3c; /* Accent color for icons */
+        }
+
+        .contact-links a:hover {
+            color: #e74c3c;
+            transform: translateY(-2px);
+        }
+
+        /* -------------------- Responsive Design -------------------- */
         @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            nav {
+                flex-direction: column; /* Stack navigation links */
+                gap: 0.8rem;
+                margin-top: 1.5rem;
+            }
+            nav a {
+                padding: 5px 0; /* Add a bit of vertical padding */
+            }
+
+            .action-buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+            .btn {
+                width: 80%; /* Make buttons wider on small screens */
+                max-width: 300px; /* Limit max width */
+                margin: 0 auto; /* Center buttons */
+            }
+
             section {
-                padding: 2rem 1rem;
+                padding: 2.5rem 1rem;
+            }
+            section h2 {
+                font-size: 1.7rem;
             }
             
             .skills-container {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smaller min width for skills */
             }
             
             .document-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stack document cards */
             }
             
             .doc-links {
+                flex-direction: column; /* Stack preview/download links */
+                gap: 0.8rem;
+            }
+            .preview-link, .download-link {
+                width: 90%; /* Make doc links wider on small screens */
+                margin: 0 auto; /* Center them */
+                min-width: unset; /* Remove min-width constraint */
+            }
+
+            .contact-links {
                 flex-direction: column;
+                gap: 1rem;
+                align-items: center; /* Center contact links */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 2rem 0.8rem;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            section {
+                padding: 2rem 0.8rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Jade Magbanua<h1>
+        <h1>Jade Magbanua</h1>
         <p>Data Analyst</p>
+
+        <!-- New: Action Buttons Section -->
+        <div class="action-buttons">
+            <a href="your_resume.pdf" target="_blank" class="btn btn-primary">
+                <i class="fas fa-file-alt"></i> View Resume
+            </a>
+            <a href="https://github.com/Jadi3d/your_portfolio_repo_name" target="_blank" class="btn btn-outline">
+                <i class="fab fa-github"></i> GitHub Portfolio
+            </a>
+        </div>
+
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -166,8 +428,9 @@
             <h3>Sales Analysis Dashboard</h3>
             <p>Interactive Power BI dashboard showing sales trends and regional performance.</p>
             <p>Technologies: Power BI, DAX, SQL</p>
-            <a href="#">View Demo</a>
+            <a href="#">View Demo</a> <!-- Update this link to your actual project demo -->
         </div>
+        <!-- Add more project cards here if you have more projects -->
     </section>
 
     <section id="reports">
@@ -176,7 +439,8 @@
             <!-- Power BI Report -->
             <div class="doc-card">
                 <div class="doc-preview">
-                    <img src="images/pdf-placeholder.jpg" alt="Power BI Report Preview">
+                    <!-- Replace with a more specific image for the report if you have one -->
+                    <img src="https://via.placeholder.com/300x200?text=PowerBI+Report+Preview" alt="Power BI Report Preview">
                     <h3>Power BI Dashboard Analysis</h3>
                 </div>
                 <div class="doc-links">
@@ -192,7 +456,8 @@
             <!-- SQL Report -->
             <div class="doc-card">
                 <div class="doc-preview">
-                    <img src="images/sql-preview.jpg" alt="SQL Analysis Preview">
+                    <!-- Replace with a more specific image for the report if you have one -->
+                    <img src="https://via.placeholder.com/300x200?text=SQL+Analysis+Preview" alt="SQL Analysis Preview">
                     <h3>SQL Data Analysis</h3>
                 </div>
                 <div class="doc-links">
@@ -204,6 +469,7 @@
                     </a>
                 </div>
             </div>
+            <!-- Add more report cards here if you have more reports -->
         </div>
     </section>
 
@@ -223,8 +489,8 @@
         <h2>Contact Me</h2>
         <div class="contact-links">
             <a href="mailto:jademagbanua24@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/jade-m-4849a0180/"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Jadi3d"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/jade-m-4849a0180/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/Jadi3d" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
     </section>
 </body>
