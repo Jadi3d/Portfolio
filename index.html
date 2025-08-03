@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Magbanua – Data Analyst Portfolio</title>
+    <title>Jade Magbanua – Data Analyst Portfolio Dashboard</title>
 
-    <!-- Updated Font Awesome CDN for more icons and better compatibility -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -18,480 +18,175 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f0f2f5; /* Light grey background for a clean look */
+            display: flex; /* Use flexbox for centering content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Full viewport height */
+            padding: 20px; /* Add some padding around the main content */
         }
 
-        /* -------------------- Header Section -------------------- */
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2.5rem 1rem 3rem; /* Increased padding slightly for more space */
+        /* -------------------- Main Dashboard Container -------------------- */
+        .portfolio-dashboard {
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Deeper shadow for elevation */
+            padding: 3rem 2rem; /* Generous padding */
             text-align: center;
-            position: relative; /* Needed for potential future additions like waves or shapes */
+            max-width: 800px; /* Max width for readability */
+            width: 100%; /* Ensure it takes full width on smaller screens */
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.3rem;
+        .portfolio-dashboard h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em; /* Slightly tighter letter spacing */
         }
 
-        header p {
-            opacity: 0.9;
-            font-size: 1.15rem;
+        .portfolio-dashboard .tagline {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin-bottom: 2rem;
+            font-weight: 500; /* Medium font weight for emphasis */
         }
 
-        /* Navigation */
-        nav {
+        .portfolio-dashboard .summary {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 3rem; /* More space before buttons */
+            max-width: 600px; /* Constrain summary width for better reading */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* -------------------- Call-to-Action Buttons -------------------- */
+        .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 1.8rem; /* Adjusted margin */
-            flex-wrap: wrap; /* Allow navigation items to wrap on smaller screens */
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            position: relative;
-            padding-bottom: 5px; /* Space for the underline */
-        }
-
-        nav a::after { /* Small hover underline effect */
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0; /* Align with the bottom of the link text */
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease-in-out;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* -------------------- New: Action Buttons -------------------- */
-        .action-buttons {
-            margin-top: 2rem; /* Space between description and buttons */
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem; /* Space between buttons */
+            gap: 1.5rem; /* Space between buttons */
             flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
         }
 
         .btn {
-            display: inline-flex; /* Allows icon and text to sit nicely together */
-            align-items: center; /* Vertically align icon and text */
-            gap: 0.6rem; /* Space between icon and text */
-            padding: 0.9rem 1.6rem;
-            border-radius: 40px; /* More pill-shaped buttons */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem; /* Space between icon and text */
+            padding: 1.1rem 2.2rem; /* Larger padding for prominent buttons */
+            border-radius: 50px; /* Pill-shaped */
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 1.05rem; /* Slightly larger font size */
             text-decoration: none;
-            transition: all 0.25s ease; /* Smooth transition for hover effects */
-            white-space: nowrap; /* Prevent text from wrapping inside the button */
+            transition: all 0.3s ease; /* Smooth transitions */
+            white-space: nowrap; /* Prevent text wrap */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
 
         .btn i {
-            font-size: 1.1em; /* Slightly larger icon */
+            font-size: 1.3em; /* Larger icons */
         }
 
-        /* Primary Button Style (e.g., for Resume) */
+        /* Primary Button (Resume) */
         .btn-primary {
-            background-color: #e74c3c; /* A vibrant red for primary action */
+            background-color: #007bff; /* A standard blue */
             color: white;
-            border: 2px solid #e74c3c;
+            border: 2px solid #007bff;
         }
 
         .btn-primary:hover {
-            background-color: #cf3f30; /* Darker red on hover */
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow on hover */
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #0056b3;
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
         }
 
-        /* Outline Button Style (e.g., for GitHub) */
-        .btn-outline {
+        /* Secondary Button (GitHub) */
+        .btn-secondary {
             background-color: transparent;
-            color: #e74c3c; /* Match primary button color for consistency */
-            border: 2px solid #e74c3c;
+            color: #2c3e50; /* Dark text */
+            border: 2px solid #2c3e50; /* Dark border */
         }
 
-        .btn-outline:hover {
-            background-color: #e74c3c; /* Fill with color on hover */
+        .btn-secondary:hover {
+            background-color: #2c3e50; /* Fill with dark color on hover */
             color: white;
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow on hover */
-        }
-
-
-        /* -------------------- Section General Styles -------------------- */
-        section {
-            padding: 3rem 1.5rem; /* Adjusted padding for sections */
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-            text-align: center; /* Center section headings */
-        }
-
-        /* -------------------- Project & Skill Cards -------------------- */
-        .project-card,
-        .skill-item {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Slightly more prominent shadow */
-            transition: transform 0.2s ease-in-out; /* Smooth hover effect */
-        }
-        
-        .project-card:hover,
-        .skill-item:hover {
-            transform: translateY(-3px); /* Lift cards on hover */
-        }
-
-        .project-card {
-            padding: 1.5rem;
-            margin: 1.5rem 0; /* Adjusted margin */
-        }
-
-        .project-card h3 {
-            margin-bottom: 0.5rem;
-            color: #34495e;
-        }
-
-        .project-card p {
-            margin-bottom: 0.5rem;
-        }
-
-        .project-card a {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 2px solid #2c3e50; /* Underline effect for links */
-            padding-bottom: 2px;
-            transition: all 0.2s ease;
-        }
-
-        .project-card a:hover {
-            color: #e74c3c;
-            border-color: #e74c3c;
-        }
-
-        /* -------------------- Skills Section -------------------- */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly adjusted min width */
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .skill-item {
-            padding: 1.2rem;
-            text-align: center;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        /* -------------------- Reports Section (PDF Showcase) -------------------- */
-        .document-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* For two columns on larger screens */
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .doc-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden; /* Ensures image corners are rounded with card */
-            display: flex;
-            flex-direction: column; /* Stack preview and links */
-            transition: transform 0.2s ease-in-out;
-        }
-        .doc-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .doc-preview {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .doc-preview img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px; /* Slightly rounded image corners */
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        }
-
-        .doc-preview h3 {
-            color: #34495e;
-            font-size: 1.2rem;
-        }
-
-        .doc-links {
-            display: flex;
-            justify-content: center; /* Center the links within the card */
-            gap: 1rem; /* More space between links */
-            padding: 1rem 1.5rem 1.5rem; /* Padding around the links */
-            border-top: 1px solid #eee; /* Separator line */
-            flex-wrap: wrap; /* Allow links to wrap if needed */
-        }
-
-        .preview-link, .download-link {
-            padding: 0.8rem 1rem; /* Slightly reduced horizontal padding */
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem; /* Slightly smaller font for these links */
-            flex: 1; /* Allow links to take equal space */
-            min-width: 120px; /* Ensure a minimum width */
-            text-align: center;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .preview-link {
-            background: #2c3e50;
-            color: white;
-            border: 2px solid #2c3e50;
-        }
-
-        .preview-link:hover {
-            background: #34495e;
-            transform: translateY(-2px);
-        }
-
-        .download-link {
-            background: transparent;
-            color: #2c3e50;
-            border: 2px solid #2c3e50;
-        }
-
-        .download-link:hover {
-            background: #2c3e50;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        /* -------------------- Contact Section -------------------- */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.8rem; /* Adjusted gap */
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        .contact-links a i {
-            font-size: 1.4em; /* Larger icons for contact */
-            color: #e74c3c; /* Accent color for icons */
-        }
-
-        .contact-links a:hover {
-            color: #e74c3c;
-            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* -------------------- Responsive Design -------------------- */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .portfolio-dashboard {
+                padding: 2.5rem 1.5rem;
             }
-            header p {
+            .portfolio-dashboard h1 {
+                font-size: 2.2rem;
+            }
+            .portfolio-dashboard .tagline {
+                font-size: 1.1rem;
+            }
+            .portfolio-dashboard .summary {
                 font-size: 1rem;
+                margin-bottom: 2rem;
             }
-            nav {
-                flex-direction: column; /* Stack navigation links */
-                gap: 0.8rem;
-                margin-top: 1.5rem;
-            }
-            nav a {
-                padding: 5px 0; /* Add a bit of vertical padding */
-            }
-
-            .action-buttons {
+            .cta-buttons {
                 flex-direction: column; /* Stack buttons vertically */
                 gap: 1rem;
-                margin-top: 1.5rem;
             }
             .btn {
-                width: 80%; /* Make buttons wider on small screens */
+                width: 85%; /* Make buttons wider on small screens */
                 max-width: 300px; /* Limit max width */
                 margin: 0 auto; /* Center buttons */
-            }
-
-            section {
-                padding: 2.5rem 1rem;
-            }
-            section h2 {
-                font-size: 1.7rem;
-            }
-            
-            .skills-container {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smaller min width for skills */
-            }
-            
-            .document-grid {
-                grid-template-columns: 1fr; /* Stack document cards */
-            }
-            
-            .doc-links {
-                flex-direction: column; /* Stack preview/download links */
-                gap: 0.8rem;
-            }
-            .preview-link, .download-link {
-                width: 90%; /* Make doc links wider on small screens */
-                margin: 0 auto; /* Center them */
-                min-width: unset; /* Remove min-width constraint */
-            }
-
-            .contact-links {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center; /* Center contact links */
+                font-size: 1rem;
+                padding: 1rem 1.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            header {
-                padding: 2rem 0.8rem;
+            body {
+                padding: 15px;
             }
-            header h1 {
+            .portfolio-dashboard {
+                padding: 2rem 1rem;
+            }
+            .portfolio-dashboard h1 {
                 font-size: 1.8rem;
             }
-            section {
-                padding: 2rem 0.8rem;
+            .portfolio-dashboard .tagline {
+                font-size: 1rem;
+            }
+            .portfolio-dashboard .summary {
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Jade Magbanua</h1>
-        <p>Data Analyst</p>
 
-        <!-- New: Action Buttons Section -->
-        <div class="action-buttons">
+    <div class="portfolio-dashboard">
+        <h1>Jade Magbanua</h1>
+        <p class="tagline">Data Analyst | Driving Insights from Data</p>
+
+        <p class="summary">
+            Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting.
+            Proficient in Python, SQL, and data visualization tools like Power BI and Tableau.
+            Eager to leverage analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.
+            Passionate about uncovering patterns and translating complex data into actionable business intelligence.
+        </p>
+
+        <div class="cta-buttons">
             <a href="your_resume.pdf" target="_blank" class="btn btn-primary">
-                <i class="fas fa-file-alt"></i> View Resume
+                <i class="fas fa-file-alt"></i> View My Resume
             </a>
-            <a href="https://github.com/Jadi3d/your_portfolio_repo_name" target="_blank" class="btn btn-outline">
+            <a href="https://github.com/Jadi3d/your_data_analyst_portfolio_repo" target="_blank" class="btn btn-secondary">
                 <i class="fab fa-github"></i> GitHub Portfolio
             </a>
         </div>
+    </div>
 
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#reports">Reports</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting. Proficient in Python, SQL, and data visualization tools like Power BI and Tableau. 
-            Eager to leverage my analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.</p>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-card">
-            <h3>Sales Analysis Dashboard</h3>
-            <p>Interactive Power BI dashboard showing sales trends and regional performance.</p>
-            <p>Technologies: Power BI, DAX, SQL</p>
-            <a href="#">View Demo</a> <!-- Update this link to your actual project demo -->
-        </div>
-        <!-- Add more project cards here if you have more projects -->
-    </section>
-
-    <section id="reports">
-        <h2>Analytical Reports</h2>
-        <div class="document-grid">
-            <!-- Power BI Report -->
-            <div class="doc-card">
-                <div class="doc-preview">
-                    <!-- Replace with a more specific image for the report if you have one -->
-                    <img src="https://via.placeholder.com/300x200?text=PowerBI+Report+Preview" alt="Power BI Report Preview">
-                    <h3>Power BI Dashboard Analysis</h3>
-                </div>
-                <div class="doc-links">
-                    <a href="New Zealand Data sheet.pdf" target="_blank" class="preview-link">
-                        <i class="fas fa-external-link-alt"></i> Live Preview
-                    </a>
-                    <a href="New Zealand Data sheet.pdf" download class="download-link">
-                        <i class="fas fa-file-download"></i> Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- SQL Report -->
-            <div class="doc-card">
-                <div class="doc-preview">
-                    <!-- Replace with a more specific image for the report if you have one -->
-                    <img src="https://via.placeholder.com/300x200?text=SQL+Analysis+Preview" alt="SQL Analysis Preview">
-                    <h3>SQL Data Analysis</h3>
-                </div>
-                <div class="doc-links">
-                    <a href="documents/sql-analysis.pdf" target="_blank" class="preview-link">
-                        <i class="fas fa-external-link-alt"></i> Live Preview
-                    </a>
-                    <a href="documents/sql-analysis.pdf" download class="download-link">
-                        <i class="fas fa-file-download"></i> Download
-                    </a>
-                </div>
-            </div>
-            <!-- Add more report cards here if you have more reports -->
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-item">Power BI</div>
-            <div class="skill-item">SQL</div>
-            <div class="skill-item">Python</div>
-            <div class="skill-item">Excel</div>
-            <div class="skill-item">Tableau</div>
-            <div class="skill-item">R</div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-links">
-            <a href="mailto:jademagbanua24@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/jade-m-4849a0180/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Jadi3d" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-    </section>
 </body>
 </html>
