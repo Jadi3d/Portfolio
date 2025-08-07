@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Magbanua – Data Analyst Portfolio Dashboard</title>
+    <title>Jade Magbanua – CS Portfolio</title>
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+        /* -------------------- Keyframes for Animations -------------------- */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* -------------------- Base & General Styles -------------------- */
         * {
             margin: 0;
@@ -18,156 +29,176 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f0f2f5; /* Light grey background for a clean look */
-            display: flex; /* Use flexbox for centering content */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            min-height: 100vh; /* Full viewport height */
-            padding: 20px; /* Add some padding around the main content */
+            /* Using a developer-centric monospaced font stack */
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+            line-height: 1.7;
+            color: #c0c5ce; /* Light grey text for readability on dark background */
+            background-color: #1a1b26; /* Dark, slightly blue-tinted background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            /* Subtle texture reminiscent of old CRT monitors */
+            background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
         }
 
-        /* -------------------- Main Dashboard Container -------------------- */
-        .portfolio-dashboard {
-            background-color: #ffffff; /* White background for the card */
-            border-radius: 12px; /* Slightly more rounded corners */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Deeper shadow for elevation */
-            padding: 3rem 2rem; /* Generous padding */
+        /* -------------------- Main Terminal Container -------------------- */
+        .portfolio-terminal {
+            background-color: rgba(42, 45, 58, 0.85); /* Semi-transparent dark card */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border: 1px solid #4a4f66; /* Subtle border */
+            border-radius: 8px; /* Slightly less rounded for a sharper look */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 2.5rem 2rem;
             text-align: center;
-            max-width: 800px; /* Max width for readability */
-            width: 100%; /* Ensure it takes full width on smaller screens */
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out; /* Add a fade-in animation */
         }
 
-        .portfolio-dashboard h1 {
-            font-size: 2.8rem;
-            color: #2c3e50;
+        .portfolio-terminal h1 {
+            font-size: 2.5rem;
+            color: #00ff99; /* Vibrant neon green accent */
             margin-bottom: 0.5rem;
-            letter-spacing: -0.03em; /* Slightly tighter letter spacing */
+            display: inline-block; /* Needed for the cursor effect to align properly */
+            text-shadow: 0 0 4px rgba(0, 255, 153, 0.5), 0 0 8px rgba(0, 255, 153, 0.3);
         }
 
-        .portfolio-dashboard .tagline {
-            font-size: 1.3rem;
-            color: #34495e;
+        /* Blinking cursor effect */
+        .portfolio-terminal h1::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .portfolio-terminal .tagline {
+            font-size: 1.2rem;
+            color: #7f8ea3; /* Muted color for the tagline */
             margin-bottom: 2rem;
-            font-weight: 500; /* Medium font weight for emphasis */
+            font-weight: 500;
         }
 
-        .portfolio-dashboard .summary {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 3rem; /* More space before buttons */
-            max-width: 600px; /* Constrain summary width for better reading */
+        .portfolio-terminal .summary {
+            font-size: 1.05rem;
+            color: #a9b1d6;
+            margin-bottom: 3rem;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.8;
+            text-align: left; /* Justified text can be hard to read with mono fonts */
+            position: relative;
+            padding-left: 25px; /* Space for the comment slashes */
         }
+
+        /* Style summary to look like a code comment block */
+        .portfolio-terminal .summary::before {
+            content: "//";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #7f8ea3;
+            opacity: 0.6;
+        }
+
 
         /* -------------------- Call-to-Action Buttons -------------------- */
         .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 1.5rem; /* Space between buttons */
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.7rem; /* Space between icon and text */
-            padding: 1.1rem 2.2rem; /* Larger padding for prominent buttons */
-            border-radius: 50px; /* Pill-shaped */
+            gap: 0.7rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px; /* Sharper corners */
             font-weight: bold;
-            font-size: 1.05rem; /* Slightly larger font size */
+            font-size: 1rem;
             text-decoration: none;
-            transition: all 0.3s ease; /* Smooth transitions */
-            white-space: nowrap; /* Prevent text wrap */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap;
+            border: 2px solid #00ff99; /* Green border */
+            color: #00ff99; /* Green text */
+            background-color: transparent;
         }
 
         .btn i {
-            font-size: 1.3em; /* Larger icons */
+            font-size: 1.2em;
+        }
+        
+        /* The two buttons share the same base style, but we define classes for clarity */
+        .btn-primary { 
+            /* Same as base .btn style */
         }
 
-        /* Primary Button (Resume) */
-        .btn-primary {
-            background-color: #007bff; /* A standard blue */
-            color: white;
-            border: 2px solid #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            border-color: #0056b3;
-            transform: translateY(-3px); /* Lift effect */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-        }
-
-        /* Secondary Button (GitHub) */
         .btn-secondary {
-            background-color: transparent;
-            color: #2c3e50; /* Dark text */
-            border: 2px solid #2c3e50; /* Dark border */
+            /* To make it slightly less prominent, you could change its color, e.g.: */
+            /* border-color: #7f8ea3; */
+            /* color: #7f8ea3; */
         }
 
-        .btn-secondary:hover {
-            background-color: #2c3e50; /* Fill with dark color on hover */
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        .btn:hover {
+            background-color: #00ff99; /* Fill with green on hover */
+            color: #1a1b26; /* Text becomes dark */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 255, 153, 0.2);
         }
+        
+        /* This keeps the secondary button's hover consistent */
+        .btn-secondary:hover {
+             /* border-color: #00ff99; */ /* Optional: make it glow green on hover too */
+        }
+
 
         /* -------------------- Responsive Design -------------------- */
         @media (max-width: 768px) {
-            .portfolio-dashboard {
-                padding: 2.5rem 1.5rem;
+            .portfolio-terminal {
+                padding: 2rem 1.5rem;
             }
-            .portfolio-dashboard h1 {
-                font-size: 2.2rem;
+            .portfolio-terminal h1 {
+                font-size: 2rem;
             }
-            .portfolio-dashboard .tagline {
-                font-size: 1.1rem;
-            }
-            .portfolio-dashboard .summary {
+            .portfolio-terminal .tagline {
                 font-size: 1rem;
-                margin-bottom: 2rem;
+            }
+            .portfolio-terminal .summary {
+                font-size: 0.95rem;
+                margin-bottom: 2.5rem;
             }
             .cta-buttons {
-                flex-direction: column; /* Stack buttons vertically */
+                flex-direction: column;
                 gap: 1rem;
+                align-items: center; /* Center the column of buttons */
             }
             .btn {
-                width: 85%; /* Make buttons wider on small screens */
-                max-width: 300px; /* Limit max width */
-                margin: 0 auto; /* Center buttons */
-                font-size: 1rem;
-                padding: 1rem 1.8rem;
+                width: 90%;
+                max-width: 320px;
+                justify-content: center; /* Center icon and text within the button */
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 10px;
             }
-            .portfolio-dashboard {
-                padding: 2rem 1rem;
+            .portfolio-terminal {
+                padding: 1.5rem 1rem;
+                border: none; /* Remove border on small screens for more space */
             }
-            .portfolio-dashboard h1 {
+            .portfolio-terminal h1 {
                 font-size: 1.8rem;
-            }
-            .portfolio-dashboard .tagline {
-                font-size: 1rem;
-            }
-            .portfolio-dashboard .summary {
-                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-dashboard">
+    <div class="portfolio-terminal">
         <h1>Jade Magbanua</h1>
         <p class="tagline">Data Analyst | Driving Insights from Data</p>
 
@@ -179,6 +210,8 @@
         </p>
 
         <div class="cta-buttons">
+            <!-- I've kept btn-primary and btn-secondary for semantic clarity,
+                 even though they now share a similar base style for a cohesive look. -->
             <a href="CV - JadeM2025.pdf" target="_blank" class="btn btn-primary">
                 <i class="fas fa-file-alt"></i> View My Resume
             </a>
