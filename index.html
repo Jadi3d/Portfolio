@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Magbanua – CS Portfolio</title>
+    <title>Jade Magbanua – Portfolio</title>
 
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts - Using a more modern monospaced font for better readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        /* -------------------- CSS Variables for Easy Theming -------------------- */
+        :root {
+            --bg-dark: #1a1b26;
+            --bg-card: rgba(42, 45, 58, 0.85);
+            --border-color: #4a4f66;
+            --text-primary: #c0c5ce;
+            --text-secondary: #7f8ea3;
+            --accent-green: #00ff99;
+            --accent-green-transparent: rgba(0, 255, 153, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
         /* -------------------- Keyframes for Animations -------------------- */
         @keyframes blink {
-            0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
 
@@ -26,84 +41,153 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            /* Using a developer-centric monospaced font stack */
-            font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-family: 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
             line-height: 1.7;
-            color: #c0c5ce; /* Light grey text for readability on dark background */
-            background-color: #1a1b26; /* Dark, slightly blue-tinted background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            /* Subtle texture reminiscent of old CRT monitors */
+            color: var(--text-primary);
+            background-color: var(--bg-dark);
             background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
         }
 
-        /* -------------------- Main Terminal Container -------------------- */
-        .portfolio-terminal {
-            background-color: rgba(42, 45, 58, 0.85); /* Semi-transparent dark card */
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            border: 1px solid #4a4f66; /* Subtle border */
-            border-radius: 8px; /* Slightly less rounded for a sharper look */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            max-width: 800px;
-            width: 100%;
-            animation: fadeIn 0.8s ease-out; /* Add a fade-in animation */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .portfolio-terminal h1 {
+        section {
+            padding: 6rem 0;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .section-title {
             font-size: 2.5rem;
-            color: #00ff99; /* Vibrant neon green accent */
-            margin-bottom: 0.5rem;
-            display: inline-block; /* Needed for the cursor effect to align properly */
-            text-shadow: 0 0 4px rgba(0, 255, 153, 0.5), 0 0 8px rgba(0, 255, 153, 0.3);
+            color: var(--accent-green);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        /* Blinking cursor effect */
-        .portfolio-terminal h1::after {
+        .section-title::before {
+            content: '<';
+            margin-right: 0.5rem;
+            opacity: 0.6;
+        }
+
+        .section-title::after {
+            content: ' />';
+            margin-left: 0.5rem;
+            opacity: 0.6;
+        }
+
+        /* -------------------- Navigation Bar -------------------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: rgba(26, 27, 38, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: top 0.3s;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+        .nav-brand::after {
             content: '_';
             animation: blink 1s step-end infinite;
             font-weight: bold;
-            margin-left: 8px;
+            margin-left: 5px;
         }
 
-        .portfolio-terminal .tagline {
-            font-size: 1.2rem;
-            color: #7f8ea3; /* Muted color for the tagline */
-            margin-bottom: 2rem;
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
             font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .portfolio-terminal .summary {
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-green);
+        }
+        
+        /* Mobile Nav Toggle */
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+
+        /* -------------------- Hero Section -------------------- */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .summary {
             font-size: 1.05rem;
-            color: #a9b1d6;
+            color: var(--text-primary);
             margin-bottom: 3rem;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            text-align: left; /* Justified text can be hard to read with mono fonts */
+            text-align: left;
             position: relative;
-            padding-left: 25px; /* Space for the comment slashes */
+            padding-left: 25px;
         }
-
-        /* Style summary to look like a code comment block */
-        .portfolio-terminal .summary::before {
+        .hero-content .summary::before {
             content: "//";
             position: absolute;
             left: 0;
             top: 0;
-            color: #7f8ea3;
-            opacity: 0.6;
+            color: var(--text-secondary);
         }
 
-
-        /* -------------------- Call-to-Action Buttons -------------------- */
         .cta-buttons {
             display: flex;
             justify-content: center;
@@ -116,110 +200,640 @@
             align-items: center;
             gap: 0.7rem;
             padding: 0.8rem 1.8rem;
-            border-radius: 4px; /* Sharper corners */
+            border-radius: 4px;
             font-weight: bold;
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
             white-space: nowrap;
-            border: 2px solid #00ff99; /* Green border */
-            color: #00ff99; /* Green text */
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
             background-color: transparent;
         }
-
-        .btn i {
-            font-size: 1.2em;
-        }
-        
-        /* The two buttons share the same base style, but we define classes for clarity */
-        .btn-primary { 
-            /* Same as base .btn style */
-        }
-
-        .btn-secondary {
-            /* To make it slightly less prominent, you could change its color, e.g.: */
-            /* border-color: #7f8ea3; */
-            /* color: #7f8ea3; */
-        }
-
+        .btn i { font-size: 1.2em; }
         .btn:hover {
-            background-color: #00ff99; /* Fill with green on hover */
-            color: #1a1b26; /* Text becomes dark */
-            transform: translateY(-2px);
+            background-color: var(--accent-green);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
             box-shadow: 0 4px 15px rgba(0, 255, 153, 0.2);
         }
-        
-        /* This keeps the secondary button's hover consistent */
-        .btn-secondary:hover {
-             /* border-color: #00ff99; */ /* Optional: make it glow green on hover too */
+
+        /* -------------------- Generic Card Style -------------------- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-color);
         }
 
+        /* -------------------- Grid Layout -------------------- */
+        .grid-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        /* 2-column grid */
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        /* 3-column grid */
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        /* 4-column grid */
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+
+        /* -------------------- About Me & Education Section -------------------- */
+        #about .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        #about .about-text {
+            flex: 2;
+        }
+        #about .education-history {
+            flex: 3;
+        }
+        #about h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        #about p { margin-bottom: 1rem; }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.7rem;
+            top: 0.4rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            border: 3px solid var(--bg-dark);
+        }
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        .timeline-item .period {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .timeline-item .private-access {
+            font-size: 0.9rem;
+            background: var(--accent-green-transparent);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* -------------------- Skills Section -------------------- */
+        .skill-category {
+            text-align: center;
+        }
+        .skill-category h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        .skill-category li {
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* -------------------- Experience Section -------------------- */
+        /* Re-uses the .timeline class from the #about section */
+        #experience .timeline-item p {
+            color: var(--text-secondary);
+        }
+
+        /* -------------------- Projects Section -------------------- */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card img {
+            width: 100%;
+            border-radius: 6px 6px 0 0;
+            border-bottom: 1px solid var(--border-color);
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .project-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .project-content h3 {
+            color: var(--accent-green);
+        }
+        .project-tags {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .project-tags li {
+            font-size: 0.8rem;
+            background-color: var(--accent-green-transparent);
+            color: var(--accent-green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+        }
+        .project-description {
+            flex-grow: 1;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .project-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 1.5rem;
+            transition: color 0.3s;
+        }
+        .project-links a:hover {
+            color: var(--accent-green);
+        }
+        .project-links i {
+            margin-right: 0.5rem;
+        }
+
+        /* -------------------- Photography Section -------------------- */
+        #photography .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* -------------------- Certifications & Voluntary Section -------------------- */
+        .list-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .list-item h4 { color: var(--text-primary); }
+        .list-item .issuer { color: var(--text-secondary); }
+        .list-item a { color: var(--accent-green); text-decoration: none; }
+
+
+        /* -------------------- Footer -------------------- */
+        footer {
+            background-color: #161720;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* -------------------- Scroll to Top Button -------------------- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .scroll-to-top.visible {
+            display: flex;
+            opacity: 1;
+        }
 
         /* -------------------- Responsive Design -------------------- */
+        @media (max-width: 992px) {
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            #about .about-content { flex-direction: column; }
+        }
+
         @media (max-width: 768px) {
-            .portfolio-terminal {
-                padding: 2rem 1.5rem;
-            }
-            .portfolio-terminal h1 {
-                font-size: 2rem;
-            }
-            .portfolio-terminal .tagline {
-                font-size: 1rem;
-            }
-            .portfolio-terminal .summary {
-                font-size: 0.95rem;
-                margin-bottom: 2.5rem;
-            }
-            .cta-buttons {
+            .nav-links {
+                position: fixed;
+                top: 65px; /* Height of navbar */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 65px);
                 flex-direction: column;
-                gap: 1rem;
-                align-items: center; /* Center the column of buttons */
-            }
-            .btn {
-                width: 90%;
-                max-width: 320px;
-                justify-content: center; /* Center icon and text within the button */
-            }
+                background: var(--bg-dark);
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: left 0.5s ease-in-out;
+                        }
+            .nav-toggle { display: block; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            section { padding: 4rem 0; }
+            .container { padding: 0 1rem; }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            .portfolio-terminal {
-                padding: 1.5rem 1rem;
-                border: none; /* Remove border on small screens for more space */
-            }
-            .portfolio-terminal h1 {
-                font-size: 1.8rem;
-            }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content .tagline { font-size: 1rem; }
+            .hero-content .summary { font-size: 0.95rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 90%; max-width: 320px; justify-content: center; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-terminal">
-        <h1>Jade Magbanua</h1>
-        <p class="tagline">Data Analyst | Driving Insights from Data</p>
-
-        <p class="summary">
-            Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting.
-            Proficient in Python, SQL, and data visualization tools like Power BI and Tableau.
-            Eager to leverage analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.
-            Passionate about uncovering patterns and translating complex data into actionable business intelligence.
-        </p>
-
-        <div class="cta-buttons">
-            <!-- I've kept btn-primary and btn-secondary for semantic clarity,
-                 even though they now share a similar base style for a cohesive look. -->
-            <a href="CV - JadeM2025.pdf" target="_blank" class="btn btn-primary">
-                <i class="fas fa-file-alt"></i> View My Resume
-            </a>
-            <a href="https://github.com/Jadi3d/Portfolio" target="_blank" class="btn btn-secondary">
-                <i class="fab fa-github"></i> GitHub Portfolio
-            </a>
+    <!-- =================================================================== -->
+    <!-- Navigation Bar -->
+    <!-- =================================================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-brand">JadeM</a>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#photography" class="nav-link">Photography</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
+    <!-- =================================================================== -->
+    <!-- Hero Section (Your Original Content) -->
+    <!-- =================================================================== -->
+    <section id="home">
+        <div class="container hero-content">
+            <h1>Jade Magbanua</h1>
+            <p class="tagline">Data Analyst | Driving Insights from Data</p>
+            <p class="summary">
+                Aspiring data analyst with a strong foundation in data analytics, programming, and financial reporting.
+                Proficient in Python, SQL, and data visualization tools like Power BI and Tableau.
+                Eager to leverage analytical skills and technical expertise to contribute to data-driven decision-making in a tech-focused environment.
+                Passionate about uncovering patterns and translating complex data into actionable business intelligence.
+            </p>
+            <div class="cta-buttons">
+                <a href="CV - JadeM2025.pdf" target="_blank" class="btn">
+                    <i class="fas fa-file-alt"></i> View My Resume
+                </a>
+                <a href="https://github.com/Jadi3d/Portfolio" target="_blank" class="btn">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- About & Education Section -->
+    <!-- =================================================================== -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About & Education</h2>
+            <div class="about-content">
+                <div class="education-history">
+                    <h3>Education</h3>
+                    <div class="timeline">
+                        <!-- Add each education entry as a timeline-item -->
+                        <div class="timeline-item">
+                            <h4>Bachelor of Science in Computer Science</h4>
+                            <p class="period">University of Example | 2021 - 2025</p>
+                            <p>Focused on data structures, algorithms, and database management. Active member of the coding club.</p>
+                            <a href="#private-access-info" class="private-access">
+                                <i class="fas fa-lock"></i> Academic Transcript (Private)
+                            </a>
+                        </div>
+                         <div class="timeline-item">
+                            <h4>High School Diploma</h4>
+                            <p class="period">Example High School | 2017 - 2021</p>
+                            <p>Graduated with honors, specializing in STEM subjects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- =================================================================== -->
+    <!-- Skills Section -->
+    <!-- =================================================================== -->
+    <section id="skills" style="background-color: #161720;">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="grid-container grid-3">
+                <div class="skill-category card">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>JavaScript</li>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                    </ul>
+                </div>
+                <div class="skill-category card">
+                    <h3><i class="fas fa-chart-bar"></i> Data & Analytics</h3>
+                    <ul>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>Excel</li>
+                        <li>Data Visualization</li>
+                    </ul>
+                </div>
+                 <div class="skill-category card">
+                    <h3><i class="fas fa-tools"></i> Tools & Tech</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>Jupyter Notebook</li>
+                        <li>VS Code</li>
+                        <li>PostgreSQL</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- Employment & Voluntary Experience Section -->
+    <!-- =================================================================== -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <!-- Current Job -->
+                <div class="timeline-item">
+                    <h4>Data Analyst Intern</h4>
+                    <p class="period">Tech Solutions Inc. | June 2024 - Present</p>
+                    <p>Developed interactive dashboards in Power BI, automated data cleaning scripts with Python, and presented findings to stakeholders.</p>
+                </div>
+                <!-- Previous Job -->
+                <div class="timeline-item">
+                    <h4>Junior Financial Reporter</h4>
+                    <p class="period">Finance Corp | May 2023 - May 2024</p>
+                    <p>Analyzed financial data using Excel and generated weekly performance reports.</p>
+                </div>
+                <!-- Voluntary Work -->
+                <div class="timeline-item">
+                    <h4>IT Support Volunteer</h4>
+                    <p class="period">Code for Community | Jan 2023 - Apr 2023</p>
+                    <p>Provided technical assistance and led workshops on basic computer literacy for a local non-profit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- Projects Section -->
+    <!-- =================================================================== -->
+    <section id="projects" style="background-color: #161720;">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid-container grid-2">
+                <!-- Project 1 -->
+                <div class="project-card card">
+                    <img src="https://via.placeholder.com/600x338.png/00ff99/1a1b26?text=Dashboard+Project" alt="Project 1 Screenshot">
+                    <div class="project-content">
+                        <h3>Sales Performance Dashboard</h3>
+                        <ul class="project-tags">
+                            <li>Power BI</li>
+                            <li>SQL</li>
+                            <li>Data Cleaning</li>
+                        </ul>
+                        <p class="project-description">An interactive dashboard to track and analyze sales metrics across different regions, products, and time periods.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card card">
+                    <img src="https://via.placeholder.com/600x338.png/00ff99/1a1b26?text=Web+Project" alt="Project 2 Screenshot">
+                    <div class="project-content">
+                        <h3>Personal Portfolio Website</h3>
+                         <ul class="project-tags">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                        </ul>
+                        <p class="project-description">A responsive personal portfolio built from scratch to showcase my skills and projects in a terminal-inspired theme.</p>
+                        <div class="project-links">
+                            <a href="#home"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Jadi3d/Portfolio" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more project-card divs here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- =================================================================== -->
+    <!-- Photography Portfolio Section -->
+    <!-- =================================================================== -->
+    <section id="photography">
+        <div class="container">
+            <h2 class="section-title">Photography</h2>
+            <div class="gallery">
+                <!-- Replace these with your actual photos -->
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Photo+1" alt="Description of photo 1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Photo+2" alt="Description of photo 2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Photo+3" alt="Description of photo 3"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Photo+4" alt="Description of photo 4"></div>
+                <!-- Add more gallery-item divs here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- Certifications Section -->
+    <!-- =================================================================== -->
+    <section id="certifications" style="background-color: #161720;">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+             <div class="grid-container grid-2">
+                 <!-- Certificate 1 -->
+                 <div class="list-item">
+                     <h4><a href="#" target="_blank">Google Data Analytics Professional Certificate</a></h4>
+                     <p class="issuer">Coursera / Google</p>
+                 </div>
+                 <!-- Certificate 2 -->
+                 <div class="list-item">
+                     <h4><a href="#" target="_blank">Microsoft Certified: Power BI Data Analyst Associate</a></h4>
+                     <p class="issuer">Microsoft</p>
+                 </div>
+                 <!-- Add more list-item divs here -->
+             </div>
+        </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- Footer / Contact -->
+    <!-- =================================================================== -->
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 2rem; color: var(--text-primary);">Get In Touch</h2>
+             <p style="color: var(--text-secondary); margin-bottom: 2rem;">Feel free to reach out for collaborations or just a friendly hello!</p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Jadi3d" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="copyright">
+                &copy; 2024 Jade Magbanua. Designed & Built with <i class="fas fa-heart" style="color:var(--accent-green);"></i>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- Scroll to Top Button -->
+    <!-- =================================================================== -->
+    <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- =================================================================== -->
+    <!-- JavaScript for Interactivity -->
+    <!-- =================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const navbar = document.getElementById('navbar');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const navLinkItems = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            // Mobile Nav Toggle
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                navToggle.querySelector('i').classList.toggle('fa-bars');
+                navToggle.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Close mobile nav when a link is clicked
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                         navLinks.classList.remove('active');
+                         navToggle.querySelector('i').classList.remove('fa-times');
+                         navToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // Scroll to Top Button Visibility
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Active Nav Link Highlighting on Scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinkItems.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' }); // Adjust margins to highlight when section is in the middle of the screen
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
