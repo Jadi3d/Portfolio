@@ -8,13 +8,10 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Google Fonts - Using a more modern monospaced font -->
+    <!-- Google Fonts - Using a more modern monospaced font for better readability -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- NEW: basicLightbox CSS for the photo gallery -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
 
     <style>
         /* -------------------- CSS Variables for Easy Theming -------------------- */
@@ -27,7 +24,6 @@
             --accent-green: #00ff99;
             --accent-green-transparent: rgba(0, 255, 153, 0.1);
             --shadow-color: rgba(0, 0, 0, 0.3);
-            --error-red: #ff5555;
         }
 
         /* -------------------- Keyframes for Animations -------------------- */
@@ -38,17 +34,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* NEW: Keyframes for typewriter effect */
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--accent-green); }
         }
 
         /* -------------------- Base & General Styles -------------------- */
@@ -155,10 +140,8 @@
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-primary);
         }
+
 
         /* -------------------- Hero Section -------------------- */
         #home {
@@ -180,19 +163,10 @@
             text-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
         }
 
-        /* MODIFIED: .tagline for typewriter effect */
         .hero-content .tagline {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid var(--accent-green);
-            animation:
-                typing 3.5s steps(44, end),
-                blink-caret .75s step-end infinite;
-            letter-spacing: .1em; /* Optional: adjust spacing */
         }
 
         .hero-content .summary {
@@ -265,6 +239,7 @@
         
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
 
         /* -------------------- About Me & Education Section -------------------- */
         #about h3 {
@@ -415,7 +390,6 @@
             overflow: hidden;
             border-radius: 8px;
             border: 1px solid var(--border-color);
-            cursor: pointer; /* Add pointer cursor to indicate it's clickable */
         }
         .gallery-item img {
             width: 100%;
@@ -428,7 +402,7 @@
             transform: scale(1.1);
         }
 
-        /* -------------------- Certifications Section -------------------- */
+        /* -------------------- Certifications & Voluntary Section -------------------- */
         .list-item {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -439,17 +413,34 @@
         }
         .list-item h4 { color: var(--text-primary); }
         .list-item .issuer { color: var(--text-secondary); font-size: 0.9rem; }
-        
-        /* -------------------- Footer & Contact Form -------------------- */
+
+
+        /* -------------------- Footer -------------------- */
         footer {
             background-color: #161720;
-            padding: 6rem 2rem 3rem; /* Adjusted padding */
+            padding: 3rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border-color);
         }
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
 
+                /* ---------- Contact Form Styles ---------- */
         #contact-form { max-width: 700px; margin: 0 auto; }
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); }
         .form-group input, .form-group textarea {
             width: 100%;
@@ -467,41 +458,13 @@
             border-color: var(--accent-green);
         }
         .form-group textarea { resize: vertical; min-height: 150px; }
-        #form-status { margin-top: 1.5rem; text-align: center; font-weight: bold; min-height: 1.5em; }
+        #form-status { margin-top: 1.5rem; text-align: center; font-weight: bold; }
         .status-success { color: var(--accent-green); }
         .status-error { color: var(--error-red); }
-        .btn[type="submit"] { cursor: pointer; }
+        .btn[type="submit"] {
+             cursor: pointer;
+        }
         
-        /* NEW: Styles for the combined footer */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .footer-bottom {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .social-links { margin-bottom: 1.5rem; }
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-        .social-links a:hover {
-            color: var(--accent-green);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
 
         /* -------------------- Scroll to Top Button -------------------- */
         .scroll-to-top {
@@ -553,11 +516,6 @@
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             section { padding: 4rem 0; }
             .container { padding: 0 1rem; }
-            /* NEW: Responsive form grid */
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
         }
 
         @media (max-width: 480px) {
@@ -578,10 +536,9 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-brand">Jade Magbanua</a>
-            <!-- MODIFIED: Changed div to button for accessibility -->
-            <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu">
+            <div class="nav-toggle" id="nav-toggle">
                 <i class="fas fa-bars"></i>
-            </button>
+            </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -689,31 +646,38 @@
         <div class="container">
             <h2 class="section-title">Experience & Voluntary Work</h2>
             <div class="timeline">
+                <!-- Current Job 1 -->
                 <div class="timeline-item">
                     <h4>Freelance Prompt Engineer</h4>
                     <p class="period">Outlier AI (Online) | June 2024 - Present</p>
                     <p>Crafting, refining, and evaluating prompts to enhance the performance and safety of leading large language models for a global AI platform.</p>
                 </div>
+                <!-- Current Job 2 -->
                 <div class="timeline-item">
                     <h4>Pharmacy Assistant</h4>
+                    <!-- NOTE: I've set the start date to Dec 2023. Please change if this is incorrect. -->
                     <p class="period">Chemist Warehouse, Flat Bush | December 2023 - Present</p>
                     <p>Providing knowledgeable customer assistance, managing stock, and supporting pharmacists in a high-volume retail environment.</p>
                 </div>
+                <!-- Voluntary Work 1 -->
                 <div class="timeline-item">
                     <h4>Youth Leader (Voluntary)</h4>
                     <p class="period">Pilgrim Baptist Church | 2023 - Present</p>
                     <p>Mentoring and leading activities for the youth group, fostering a positive and supportive community environment.</p>
                 </div>
+                 <!-- Voluntary Work 2 -->
                  <div class="timeline-item">
                     <h4>Regular Blood Donor (Voluntary)</h4>
                     <p class="period">NZ Blood Service | 2024 - Present</p>
                     <p>Consistently contributing to the community's health by donating blood.</p>
                 </div>
+                <!-- Previous Job 1 -->
                 <div class="timeline-item">
                     <h4>Retail Assistant</h4>
                     <p class="period">New World, Howick | November 2021 - 2024</p>
                     <p>Handled a variety of responsibilities including customer service, checkout operations, and stock management in a busy supermarket setting.</p>
                 </div>
+                <!-- Previous Job 2 -->
                 <div class="timeline-item">
                     <h4>Crew Member</h4>
                     <p class="period">McDonald's, Manukau | February 2020 - August 2020</p>
@@ -730,12 +694,15 @@
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="grid-container grid-2">
+                <!-- Project 1 -->
                 <div class="project-card card">
                     <img src="https://via.placeholder.com/600x338.png/00ff99/1a1b26?text=Dashboard+Project" alt="Project 1 Screenshot">
                     <div class="project-content">
                         <h3>Sales Performance Dashboard</h3>
                         <ul class="project-tags">
-                            <li>Power BI</li><li>SQL</li><li>Data Cleaning</li>
+                            <li>Power BI</li>
+                            <li>SQL</li>
+                            <li>Data Cleaning</li>
                         </ul>
                         <p class="project-description">An interactive dashboard to track and analyze sales metrics across different regions, products, and time periods.</p>
                         <div class="project-links">
@@ -744,12 +711,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- Project 2 -->
                 <div class="project-card card">
                     <img src="https://via.placeholder.com/600x338.png/00ff99/1a1b26?text=Web+Project" alt="Project 2 Screenshot">
                     <div class="project-content">
                         <h3>Personal Portfolio Website</h3>
                          <ul class="project-tags">
-                            <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
                         </ul>
                         <p class="project-description">A responsive personal portfolio built from scratch to showcase my skills and projects in a terminal-inspired theme.</p>
                         <div class="project-links">
@@ -771,29 +741,13 @@
             <p class="section-subtitle">
                 After working as a junior professional photographer from 2016-2017, I now continue to pursue photography as a passionate hobby.
             </p>
-            <div class="gallery" id="photo-gallery">
-                <!-- IMPORTANT: Replace placeholders with your photos! -->
-                <!-- Use a smaller thumbnail for `src` and a high-res version for `data-src` -->
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Portrait" 
-                         data-src="https://via.placeholder.com/800x800.png/c0c5ce/1a1b26?text=Portrait" 
-                         alt="A portrait photograph">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Landscape" 
-                         data-src="https://via.placeholder.com/800x800.png/c0c5ce/1a1b26?text=Landscape" 
-                         alt="A landscape photograph">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Event" 
-                         data-src="https://via.placeholder.com/800x800.png/c0c5ce/1a1b26?text=Event" 
-                         alt="An event photograph">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Street" 
-                         data-src="https://via.placeholder.com/800x800.png/c0c5ce/1a1b26?text=Street" 
-                         alt="A street photograph">
-                </div>
+            <div class="gallery">
+                <!-- Replace these with your actual photos -->
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Portrait" alt="Description of photo 1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Landscape" alt="Description of photo 2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Event" alt="Description of photo 3"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400.png/c0c5ce/1a1b26?text=Street" alt="Description of photo 4"></div>
+                <!-- Add more gallery-item divs here -->
             </div>
         </div>
     </section>
@@ -818,48 +772,54 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- NEW: Consolidated Footer & Contact Section -->
+    <!-- Contact Section -->
+    <!-- =================================================================== -->
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle" style="margin-top: -2rem;">
+            Have a question or want to work together? Leave a message below.
+        </p>
+
+        <!-- Your form goes here, adapted for the site's styling -->
+        <form id="contact-form" action="https://formspree.io/f/mzzvyyzy" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </div>
+            <!-- This div is for showing success/error messages with JavaScript -->
+            <div id="form-status"></div>
+        </form>
+    </div>
+</section>
+    <!-- =================================================================== -->
+    <!-- Footer / Contact -->
     <!-- =================================================================== -->
     <footer id="contact">
         <div class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <p class="section-subtitle" style="margin-top: -2rem; margin-bottom: 3rem;">
-                Have a question, a project proposal, or just want to connect? Feel free to send me a message.
-            </p>
-
-            <form id="contact-form" action="https://formspree.io/f/mzzvyyzy" method="POST">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <div style="text-align: center;">
-                    <button type="submit" class="btn">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </div>
-                <div id="form-status"></div>
-            </form>
-
-            <div class="footer-bottom">
-                <div class="social-links">
-                    <a href="mailto:jademagbanua24@gmail.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://github.com/jademagbanua/Portfolio" target="_blank" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/jademagbanua-bdt/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
-                <p class="copyright">
-                    &copy; 2024 Jade Magbanua. Designed & Built with <i class="fas fa-heart" style="color:var(--accent-green);"></i>.
-                </p>
+            <h2 class="section-title" style="font-size: 2rem; color: var(--text-primary);">Get In Touch</h2>
+             <p style="color: var(--text-secondary); margin-bottom: 2rem;">Feel free to reach out for collaborations or just a friendly hello!</p>
+            <div class="social-links">
+                <a href="mailto:jademagbanua24@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://jademagbanua.github.io/Portfolio/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jademagbanua-bdt/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
+            <p class="copyright">
+                &copy; 2024 Jade Magbanua. Designed & Built with <i class="fas fa-heart" style="color:var(--accent-green);"></i>.
+            </p>
         </div>
     </footer>
 
@@ -873,10 +833,7 @@
 
     <!-- =================================================================== -->
     <!-- JavaScript for Interactivity -->
-    <!-- ==================================================================================== -->
-    <!-- NEW: basicLightbox JS for the photo gallery -->
-    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
-    
+    <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navToggle = document.getElementById('nav-toggle');
@@ -885,29 +842,26 @@
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             const navLinkItems = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section[id]');
-            const photoGallery = document.getElementById('photo-gallery');
 
-            // --- Mobile Nav Toggle (with accessibility improvements) ---
+            // Mobile Nav Toggle
             navToggle.addEventListener('click', () => {
-                const isActive = navLinks.classList.toggle('active');
-                navToggle.querySelector('i').classList.toggle('fa-bars', !isActive);
-                navToggle.querySelector('i').classList.toggle('fa-times', isActive);
-                navToggle.setAttribute('aria-label', isActive ? 'Close navigation menu' : 'Open navigation menu');
+                navLinks.classList.toggle('active');
+                navToggle.querySelector('i').classList.toggle('fa-bars');
+                navToggle.querySelector('i').classList.toggle('fa-times');
             });
             
-            // --- Close mobile nav when a link is clicked ---
+            // Close mobile nav when a link is clicked
             navLinkItems.forEach(link => {
                 link.addEventListener('click', () => {
                     if (navLinks.classList.contains('active')) {
                          navLinks.classList.remove('active');
                          navToggle.querySelector('i').classList.remove('fa-times');
                          navToggle.querySelector('i').classList.add('fa-bars');
-                         navToggle.setAttribute('aria-label', 'Open navigation menu');
                     }
                 });
             });
 
-            // --- Scroll to Top Button Visibility ---
+            // Scroll to Top Button Visibility
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
@@ -923,7 +877,7 @@
                 });
             });
 
-            // --- Active Nav Link Highlighting on Scroll ---
+            // Active Nav Link Highlighting on Scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -935,24 +889,11 @@
                         });
                     }
                 });
-            }, { rootMargin: '-30% 0px -70% 0px' });
+            }, { rootMargin: '-30% 0px -70% 0px' }); // Adjust margins to highlight when section is in the middle of the screen
 
             sections.forEach(section => {
                 observer.observe(section);
             });
-
-            // --- NEW: Photography Lightbox Logic ---
-            if (photoGallery) {
-                photoGallery.addEventListener('click', function(e) {
-                    if (e.target.tagName === 'IMG') {
-                        // Use the high-resolution image from data-src if available
-                        const highResSrc = e.target.dataset.src || e.target.src;
-                        // Create and show the lightbox
-                        basicLightbox.create(`<img src="${highResSrc}" alt="${e.target.alt}">`).show();
-                    }
-                });
-            }
-
             // --- Contact Form Submission Logic ---
             const form = document.getElementById('contact-form');
             const statusDiv = document.getElementById('form-status');
@@ -962,6 +903,7 @@
                 event.preventDefault();
                 const data = new FormData(event.target);
     
+            // Show a "Sending..." message
                 statusDiv.innerHTML = 'Sending...';
                 statusDiv.className = '';
                 submitButton.disabled = true;
